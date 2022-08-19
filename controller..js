@@ -15,7 +15,6 @@ calButton.addEventListener("click", calculateSum);
 
 //             Second Part
 const linkElements = document.querySelectorAll("#highlight-links a");
-console.dir(linkElements);
 
 function highlightLink(event){
     linkElements.forEach(element => {
@@ -51,24 +50,33 @@ userbtn.addEventListener("click",displayData);
 //               Fourth Part
 
 const diceInput = document.getElementById("user-target-number");
-const diceButton = document.querySelector("#statistics button");
+
+const listElement = document.getElementById("dice-rolls");
 const x = document.getElementById("output-total-rolls");
 const y = document.getElementById("output-target-number");
-const listElement = document.getElementById("dice-rolls");
-const userInp = diceInput.value;
+
 function calculateTurns(event){
-    let turns = 1;
-    let num = Math.floor((Math.random() * 6) + 1);
-    x.textContent = turns;
+    listElement.innerHTML = "";
+
+    const userInp = diceInput.value;
     y.textContent = userInp;
-    while(userInp != num){
-        let newElement = document.createElement("li");
-        num = Math.floor((Math.random() * 6) + 1);
-        newElement.textContent = num;
-        turns++;
-        x.textContent = turns;
-        listElement.append(newElement);
-    } 
+    
+    let turns = 0;
+    let num = 0;
+
+     while(!(userInp == num)){
+
+         num = Math.floor((Math.random() * 6) + 1);
+         turns++;
+
+         let newElement = document.createElement("li");        
+         newElement.textContent = "Roll "+turns+" : "+num;
+         listElement.append(newElement);
+         
+         x.textContent = turns;         
+
+     } 
 }
 
+const diceButton = document.querySelector("#statistics button");
 diceButton.addEventListener("click",calculateTurns);

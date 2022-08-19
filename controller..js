@@ -12,3 +12,16 @@ calOutput.style.display = "block";
 }
 
 calButton.addEventListener("click", calculateSum);
+
+//             Second Part
+const linkElements = document.querySelectorAll("#highlight-links a");
+console.dir(linkElements);
+
+function highlightLink(event){
+    linkElements.forEach(element => {
+        element.classList.add("highlight");
+    });
+}
+
+const highButton = document.querySelector("#highlight-links button");
+highButton.addEventListener("click", highlightLink);
